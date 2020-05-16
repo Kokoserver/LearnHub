@@ -1,0 +1,132 @@
+{% extends 'template.html'%}
+{% load static %}
+{% block content %}
+         <div id="content-wrapper" class="m-5">
+            <div class="container-fluid upload-details">
+               <div class="row">
+                  <div class="col-lg-12 mx-3">
+                     <div class="main-title">
+                        <h6 class="text-center mt-b ">Upload Details</h6>
+                        <ul>
+                           {% for message in messages %}
+                           <li>{{message}}</li>
+                           {% endfor %}
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               <div class="row">
+                  <div class="col-lg-12">
+                     <div class="koko-form">
+                        <div class="row">
+                           <div class="col-lg-12">
+                              <form  id="courseForm"  action="upload" autocomplete="on"  method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                              <div class="form-group mb-3">
+                                 {{ form.title}}
+                                 <span id="title">{{form.title.help_text}}</span>
+                              </div>
+
+                              <div class="form-group mb-3">
+                                 {{ form.description}}
+                                <span id="description">{{form.description.help_text}}</span>
+                              </div>
+
+                        <div class="form-group ">
+                           {{form.pdf}}
+                           <button type="button" class="custom-button  mt-3 pr-5"  id="btn2">PDF attachment(optional)</button>
+                          <span id="pdf">{{form.pdf.help_text}}</span>
+                          
+                        </div>
+
+                        <div class="row">
+                           <div class="col-lg-4">
+                              <div class="form-group  mt-3 ">
+                                {{form.duration}}
+                               <span id="duration">{{form.duration.help_text}}</span>
+                              </div>
+                           </div>
+                           <div class="col-lg-4">
+                              <div class="form-group  mt-3">
+                                 {{form.amount}}
+                                 <span id="price">{{form.amount.help_text}}</span>
+                              </div>
+                           </div>
+                           <div class="col-lg-4">
+                              <div class="form-group  mt-3">
+                                 {{form.department}}
+                                <span id="department">{{form.department.help_text}}</span>
+                              </div>
+                           </div>
+                           <div>
+                                 <div>
+                                    <div class="form-group mt-4  mt-3">
+                                    {{form.cover_pic}}
+                                    <button type="button" class="custom-button" id="btn1">Choose a display picture</button>
+                                    <span id="pic">{{form.cover_pic.help_text}}</span>
+                                 </div>
+                          </div>
+                        </div>
+                       <div class="container" >
+                      {{form.doc_file}}
+                   <!-- Drag and Drop container-->
+                     <div class="upload-area"  id="uploadfile">
+                   <h1 class="file">Drag and Drop file here<br/>Or<br/>Click to select file</h1>
+                    </div>
+                      </div>
+                         </div>
+                                  <div class="container mt-5">
+                                     <button   id="submit" class="btn btn-outline-primary form-control" type="submit">Save Changes</button>
+                                  </div>
+                        </form>
+
+                     <!-- Modal -->
+                  </div> 
+                  <div class="modal fade " data-backdrop="static" style="height: 50vh;" id="alert" tabindex="-1" role="dialog" aria-labelledby="show message modal" aria-hidden="true">
+                     <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">LearnHub</h4>
+                        </div>
+                           <div id="errorMessage">
+                              <ul>
+
+                              </ul>
+                           </div>
+                        <div class class="modal-body">
+                           <div class="progress bg-secondary mx-3">
+                              <div class="progress-bar " id="progress" role="progressbar" style="width:0%; " aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                              </div>
+                          
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" id="modal-btn1" class="btn btn-secondary"  data-dismiss="modal">Close</button>
+                           <button type="button" id="modal-btn2" class="btn btn-primary"><a href="/" class="btn">Save changes</a></button>
+                        </div>
+                      </div>
+                     </div>
+                   </div>
+                        </div>
+                       <div class="terms text-center mt-5">
+                       </div>
+                          <div class="text-center">
+                        <p class="mb-0">There are many variations of passages of Lorem Ipsum available, but the majority <a href="#">Terms of Service</a> and <a href="#">Community Guidelines</a>.</p>
+                        <p class="hidden-xs mb-0">Ipsum is therefore always free from repetition, injected humour, or non</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+               </div>
+               </div>
+            </div>
+         </div>
+            <!-- /.container-fluid -->
+            <!-- Sticky Footer -->
+            
+{% endblock %}
+{% block javascript %}
+ <!-- file upload -->
+  <script src="{% static 'js/basic-upload.js' %}"></script>
+{% endblock %}
+
+

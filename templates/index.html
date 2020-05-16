@@ -1,0 +1,222 @@
+     {% extends 'template.html'%}
+        {% load static%}
+           {% block content %}
+      <div id="main">
+         <div class="container-fluid" id="banner">
+
+          </div>
+            <div class="single-channel-nav"  >
+               <nav class="navbar navbar-expand-lg navbar-light">
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                     <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                           <a class="nav-link" href="Blog">Community <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="materials">Materials</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="projects">Projects</a>
+                        </li>
+                        <li class="nav-item">
+                           <a class="nav-link" href="About">About</a>
+                        </li>
+                     </ul>
+                  </div>
+               </nav>
+            </div>
+      </div>
+ 
+        
+         <div class="container-fluid pb-0">
+            <div class="top-mobile-search">
+               <div class="row">
+                  <div class="col-md-12">   
+                     <form class="mobile-search">
+                        <div class="input-group">
+                          <input type="text" placeholder="Search for..." class="form-control">
+                            <div class="input-group-append">
+                              <button type="button" class="btn btn-dark"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                     </form>   
+                  </div>
+               </div>
+            </div>
+            <div class="top-category section-padding mb-4">
+               <div class="row">
+                  <div class="col-md-12">
+                     <div class="main-title">
+                        
+                        <div class="btn-group float-right right-action">
+                           <a href="#" class="right-action-link text-gray" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                           <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+                           </a>
+                           <div class="dropdown-menu dropdown-menu-right">
+                              <a class="dropdown-item" href="#"><i class="fas fa-fw fa-star"></i> &nbsp; Top Rated</a>
+                              <a class="dropdown-item" href="#"><i class="fas fa-fw fa-signal"></i> &nbsp; Viewed</a>
+                              <a class="dropdown-item" href="#"><i class="fas fa-fw fa-times-circle"></i> &nbsp; Close</a>
+                           </div>
+                            <div id="content-wrapper">
+                           </div>
+                           
+                        </div>
+                     </div>
+                     <div class="float-left text-center"><h6>Top rated</h6></div>
+                     <div class="col-md-12">
+                        <div class="owl-carousel owl-carousel-category">
+                           
+                           {% for topLike in like%}
+                           <div class="item">
+                              <div class="category-item">
+                                 <a href="view/{{topLike.id}}">
+                                    <img class="img-fluid" src="{{topLike.cover_pic.url}}" alt="">
+                                    <h6>{{topLike.title}}</h6>
+                                    <p>{{topLike.like.count}} Likes</p>
+                                 </a>
+                              </div>
+                           </div>
+                          
+                           {%endfor%}
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <hr>
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="main-title">
+                           <div class="btn-group float-right right-action">
+                              <a href="#" class="right-action-link text-gray" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Sort by <i class="fa fa-caret-down" aria-hidden="true"></i>
+                              </a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                 <a class="dropdown-item" href="#"><i class="fas fa-fw fa-star"></i> &nbsp; Top Rated</a>
+                                 <a class="dropdown-item" href="#"><i class="fas fa-fw fa-signal"></i> &nbsp; Viewed</a>
+                                 <a class="dropdown-item" href="#"><i class="fas fa-fw fa-times-circle"></i> &nbsp; Close</a>
+                              </div>
+                           </div>
+                           <h6>Latest Course</h6>
+                        </div>
+                     </div>
+                     
+                     {% for course in course%}
+                     <div class="col-lg-2 col-sm-6 my-4" >
+                        <div class="video-card text-center">
+                           <div class="video-card-image">
+                              <a class="play-icon" href="view/{{course.id}}"><i class="fas fa-play-circle"></i></a>
+                              <a  href="view/{{course.id}}"><img  class="card-img" src="{{course.cover_pic.url }}" alt="courseBanner"></a>
+                           
+                           </div>
+                           <div class="video-card-body">
+                              <div class="video-title text-left ml-4">
+                                 <a href="view/{{course.id}}"><h6>{{course.title|truncatewords:6}}</h6></a>
+                                 <hr>
+                              </div>
+                              <div class="video-page text-success">
+                                <span class="text-success h6">₦{{course.amount}}<i class="fas fa-check-circle text-success"></i></span>
+                                <span class="mx-2 text-info h6" id="cart"><i class=" mx-1 fas fa-plus-circle"></i>Cart</span> 
+                              </div>
+                              <div class="video-view pt-1">
+                               <span><i class="fas fa-calendar-alt"></i> {{course.date}}</span>
+                               <span style="cursor: pointer;" class="like text-danger mx-2" id="{{course.id}}"><span id="likeCount{{course.id}}">
+                                 {% csrf_token%}
+                                 {%if course.like.count == 0%}
+                                 {%else%}
+                                 {{course.like.count}}
+                                 {%endif%}
+                              </span><i class=" mr-1 fas fa-heart"></i>like</span>
+                              </div>
+                              
+                           </div>
+                     </div>
+                     </div>
+                     {% endfor%}
+                  </div>
+                
+               <hr class="mt-0">
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="main-title">
+                           <h6>Popular department</h6>
+                        </div>
+                     </div>
+                     <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="channels-card">
+                           <div class="channels-card-image">
+                              <a href="department/accounting"><img class="img-fluid" src="{% static 'img/s1.png'%}" alt=""></a>
+                              <!-- <div class="channels-card-image-btn"><button type="button" class="btn btn-outline-danger btn-sm">Subscribe <strong>1.4M</strong></button></div> -->
+                           </div>
+                           <div class="channels-card-body">
+                              <div class="channels-title">
+                                 <a href="department/accounting">Accounting</a>
+                              </div>
+                              <!-- <div class="channels-view">
+                                 382,323 subscribers
+                              </div> -->
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="channels-card">
+                           <div class="channels-card-image">
+                              <a href="department/biochemistry"><img class="img-fluid" src="{% static 'img/s2.png' %}" alt=""></a>
+                              <!-- <div class="channels-card-image-btn"><button type="button" class="btn btn-outline-danger btn-sm">Subscribe <strong>1.4M</strong></button></div> -->
+                           </div>
+                           <div class="channels-card-body">
+                              <div class="channels-title">
+                                 <a href="department/biochemistry">BioChemistry</a>
+                              </div>
+                              <!-- <div class="channels-view">
+                                 382,323 subscribers
+                              </div> -->
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="channels-card">
+                           <div class="channels-card-image">
+                              <a href="department/csc"><img class="img-fluid" src="{% static 'img/s3.png'%}" alt=""></a>
+                              <!-- <div class="channels-card-image-btn"><button type="button" class="btn btn-outline-secondary btn-sm"> <strong>{{cscCourseCount}} Courses</strong></button></div> -->
+                           </div>
+                           <div class="channels-card-body">
+                              <div class="channels-title">
+                                 <a href="department/csc">Computer science<span title="" data-placement="top" data-toggle="tooltip" data-original-title="Verified"><i class="fas fa-check-circle"></i></span></a>
+                              </div>
+                              <!-- <div class="channels-view">
+                                  subscribers
+                              </div> -->
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-xl-3 col-sm-6 mb-3">
+                        <div class="channels-card">
+                           <div class="channels-card-image">
+                              <a href="department/csc"><img class="img-fluid" src="{% static 'img/s4.png'%}" alt=""></a>
+                              <!-- <div class="channels-card-image-btn"><button type="button" class="btn btn-outline-danger btn-sm">Subscribe <strong>1.4M</strong></button></div> -->
+                           </div>
+                           <div class="channels-card-body">
+                              <div class="channels-title">
+                                 <a href="department/maths">Mathematics</a>
+                              </div>
+                              <!-- <div class="channels-view">
+                                 382,323 subscribers
+                              </div> -->
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+ 
+
+
+
+
+     <!-- <video name='demo' controls autoplay width='50%' height='40%'>
+     <source src="/user_1/video/%d/%m/%Y/jQuery_Tutorial_-_File_Upload_With_jQuery__Ajax__PHP_-_Drag_And_Drop.mp4" type="video/mp4"></source>
+      </video> -->
+     {% endblock  %}

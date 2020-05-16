@@ -1,0 +1,68 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+ <div class="container">
+  <div class="jumbotron">
+   <blockquote cite="https://www.goodreads.com/quotes/tag/nation-building">
+   The idea is to change the nature and value system of the nation as whole”
+
+    <footer>― Sunday Adelaja, <cite>Nation Building</cite></footer>
+</blockquote>
+   <p>
+    What shapes the best in us dies when the best education dies! The best in us shall always be undermined when they
+   are responsible for shaping the best in us are always undermined!
+   What shapes the best in us dies when the best education dies! The best in us shall always be undermined when they that are responsible for shaping the best in us are always undermined!
+   </p>
+   <p>
+I stand for a different education: a different education where students will not just learn books but life!
+I stand for a different education: a different education where students will not just learn moral principles, but they shall be living examples of moral principles.
+I stand for a different education: a different education where students don’t just understand what they learn, but practice what they learn with understanding!
+
+   </p>
+
+ <div class="row">
+   <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="jumbotron">
+  <form action="lecturer" method="post" autocomplete="off">
+                     <ul style="list-style-type:none; color:red">
+                        {% for message in messages %}
+                        <li>
+                           {{ message }}
+                        </li>
+                        {% endfor %}
+                     </ul>
+                                          {% csrf_token %}
+                        <div class="form-group">
+                           <input type="text" class="form-control" name="areaOfExpert" placeholder="Area of expertise" required>
+                            <p style="font-size:smaller" >Courses you take</p>
+                        </div>
+                        <div class="form-group">
+                           <input type="number" maxlength="20" class="form-control" name="yearOfExperience" placeholder="Year of experience" required>
+                            <p style="font-size:smaller">Have you teach or lecture before if yes how long </p>
+                        </div>
+                        <div class="form-group">
+                           <input type="text" class="form-control" name="department" placeholder="Department" required>
+                            <p style="font-size:smaller"> Which department you teach</p>
+
+                        </div>
+                         <div class="form-group">
+                           <input type="text" class="form-control" name="tutorialExperience" placeholder="Teaching experience" required>
+                             <p style="font-size:smaller">Have you done any online tutorial before or personal teaching</p>
+                        </div>
+         
+                        <div class="mt-4">
+                           <button type="submit" class="btn btn-outline-primary btn-block btn-lg">Sign Up</button>
+                        </div>
+                     </form>
+ </div>
+  </div>
+  <div class="col-md-3"></div>
+ </div>
+  </div>
+
+ </div>
+
+</div>
+{% endblock%}

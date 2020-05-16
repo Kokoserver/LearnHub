@@ -1,0 +1,69 @@
+{% extends 'template.html'%}
+{% load static%}
+   {% block content %}
+         <div id="content-wrapper">
+            <div class="container-fluid pb-0">
+               <div class="video-block section-padding">
+                  <div class="row">
+                     <div class="col-md-8">
+                        <div class="single-video-left">
+                         <div class="single-video">
+                           <div id="instructions">
+                              <video id="videoPlayer" class="video-js vjs-big-play-centered" poster="../static/img/black-1072366.jpg"
+                                  data-setup= "{}">
+                                <source src="https://vjs.zencdn.net/v/oceans.mp4" type='video/mp4' />
+                                <source src="https://vjs.zencdn.net/v/oceans.webm" type='video/webm' />
+                              </video>
+                            </div>
+                        
+                           </div>
+                           <div class="single-video-title box mb-3">
+                             <p id="title-text" class="text-center mt-2 h6 text-primary"></p>
+                           </div>
+                          
+                        </div>
+                     </div>
+                     <div class="col-md-4">
+                        <div class="single-video-right">
+                           <div class="row">
+                              <div class="col-md-12">
+                                 <div class="adblock">
+                                    <div class="img">
+                                       Google AdSense<br>
+                                       336 x 280
+                                    </div>
+                                 </div>
+                                 <div class="main-title">
+                                    
+                                    <h6>Up Next</h6>
+                                 </div>
+                              </div>
+                              <div class="col-md-12 item">
+                                 {%for list in video%}
+                               
+                                 <div class="video-card video-card-list item">
+                                    <div class="video-card-image  ">
+                                       <a class="play-icon" href="#"><i class="fas fa-play-circle"></i></a>
+                                       <a href="#" ><img class="img-fluid" id="poster"   src="{{list.thumbnailImage.url}}" alt=""></a>
+                                       <div class="time">{{list.duration}}</div>
+                                    </div>
+                                    <div class="video-card-body">
+                                       <div class="video-title category-item"  >
+                                          <a class="videos-list-item url" onclick="loadVideo(name= `{{list.docName| cut:'.mp4' }}`, el='{{list.doc_file.url}}')" id="{{list.doc_file.url}}"  href="#">{{list.docName}}</a>
+                                          
+                                       </div>
+                                      
+                                
+                                 </div>
+                                </div>
+                                
+                                 {%endfor%}
+                              
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            
+               {%endblock %}
