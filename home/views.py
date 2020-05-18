@@ -26,23 +26,24 @@ finalPath = os.path.join(PROJECT_ROOT, f'media/upload')
 
 # Create your views here.
 def index(request):
-    course = Course.objects.all().order_by( 'date' )[::-1][:5]
-    like = Course.objects.all().order_by( 'like' )[:10]
-    csc = Course.objects.filter( department__iexact='computer science' ).count()
-    math = Course.objects.filter( department__iexact='mathematics' ).count()
-    bioch = Course.objects.filter( department__iexact='biochemistry' ).count()
-    account = Course.objects.filter( department__iexact='accounting' ).count()
-    is_active = True
-    context = {'active': is_active,
-               'course': course,
-               'like': like,
-               'csc': csc,
-               'account': account,
-               'math': math,
-               'bioch': bioch
+    # course = Course.objects.all().order_by( 'date' )[::-1][:5]
+    # like = Course.objects.all().order_by( 'like' )[:10]
+    # csc = Course.objects.filter( department__iexact='computer science' ).count()
+    # math = Course.objects.filter( department__iexact='mathematics' ).count()
+    # bioch = Course.objects.filter( department__iexact='biochemistry' ).count()
+    # account = Course.objects.filter( department__iexact='accounting' ).count()
+    # is_active = True
+    # context = {'active': is_active,
+    #            'course': course,
+    #            'like': like,
+    #            'csc': csc,
+    #            'account': account,
+    #            'math': math,
+    #            'bioch': bioch
 
-               }
-    return render( request, 'index.html', context )
+    #            }
+    # , context 
+    return render( request, 'index.html')
 
 
 def partner(request):
