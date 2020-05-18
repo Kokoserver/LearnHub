@@ -10,7 +10,7 @@ cycler==0.10.0
 decorator==4.4.2
 distlib==0.3.0
 dj-database-url==0.5.0
-Django==2.2.10
+Django==3.0.5
 django-appconf==1.0.4
 django-heroku==0.3.1
 django-libsass==0.8
@@ -56,6 +56,6 @@ tqdm==4.46.0
 urllib3==1.25.9
 virtualenv==20.0.15
 virtualenvwrapper-win==1.2.6
-whitenoise==4.1.2
+whitenoise==5.0.1
 wrapt==1.11.2
 youtube-dl==2020.5.8
