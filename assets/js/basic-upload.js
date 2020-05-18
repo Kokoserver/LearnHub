@@ -110,10 +110,11 @@ $("#uploadfile").click(()=>{
 
    // handling  the doc file after a button is clicked
 $("#id_doc_file").change(()=>{
+
     if($("#id_doc_file").val()){
-       if($("#id_doc_file").val().match(/(\.|\/)(mp3|mp4)$/i)){$('h1').text('File is added')}
+       if($("#id_doc_file").val().match(/(\.|\/)(mp4)$/i)){$('h1').text('File is added')}
        else if(!$("#id_doc_file").val().match(/(\.|\/)(mp3|mp4)$/i)){
-       $('h1').text('Please select a valid video file (mp3, mp4 format)').css('color', 'red')}}
+       $('h1').text('Please select a valid video file (mp4 format)').css('color', 'red')}}
     else{
     $('h1').text('No video pics selected, yet').css('color', 'gray')} })})
 

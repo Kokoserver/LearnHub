@@ -1,6 +1,6 @@
 
-
-var player = videojs('#videoPlayer', {
+var videoPlayer = document.getElementById('videoPlayer')
+var player = videojs(videoPlayer, {
     aspectRatio :"640:267",
     playbackRates: [0.25, 0.5 , 1, 1.5, 2, 2.5, 3, 3.5, 4],
     width:"640px" ,
@@ -21,7 +21,10 @@ var player = videojs('#videoPlayer', {
 var poster = player.getAttribute('poster')
 var videoPlayer = document.getElementById('videoPlayer');
 var video = document.getElementsByClassName("video-title")
-var urls = document.getElementById('urls')
+var url = ()=>{
+  var urls = document.getElementById('urls')
+  return urls
+}
 var videoList = []
    for(var i =0; i<video.length; i++){
     var videos = video[i]
@@ -38,18 +41,24 @@ var videoList = []
     
    }
 
-// player.playlist(videoList);
-// player.playlist.currentItem(el.data('playlist-item'));
-// // player.playlist.autoadvance(2);
+   var titleUpdater = ()=> { 
+    var title =   document.getElementById('title-text').innerHTML =  player.cache_.source.name.replace('.mp4', ' ')
+    }
 
 player.on('play', function () {
-    console.log(this.currentSrc());
-    var name = player.playlist.indexOf(this.currentSrc())
-    document.getElementById('title-text').innerHTML = player.cache_.source.name
+    // console.log(this.currentSrc());
+    // var name = player.playlist.indexOf(this.currentSrc())
+    titleUpdater()
+    
     
 });
+  function loadVideo(name ,element){
+    document.getElementById('title-text').innerHTML = name
+    player.src(element)
+  player.play()
+  
+}
 
- 
 
    
 /* ADD PREVIOUS */
@@ -78,7 +87,6 @@ var PrevButton = videojs.extend(Button, {
   // },
 
   handleClick: function() {
-    console.log('click');
     player.playlist.previous();
   }
 });
@@ -97,7 +105,7 @@ var NextButton = videojs.extend(Button, {
   },
 
   handleClick: function() {
-    console.log('click');
+    // console.log('click');
     player.playlist.next();
   }
 });
@@ -115,6 +123,4 @@ player.getChild('controlBar').addChild('NextButton', {}, 2);
 
 
   player.playlist(videoList)
-  console.log(player.playlist(videoList))
-  
   player.playlist.autoadvance(0); // play all
