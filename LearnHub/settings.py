@@ -23,6 +23,7 @@ SECRET_KEY = '#^g@@v9+$tgpv*m=pf@y#&fsddvdpllu!w-r86-iuxv5n=1zqk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

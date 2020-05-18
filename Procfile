@@ -1,1 +1,1 @@
-web: gunicorn LearnHub.wsgi
+web: gunicorn LearnHub.wsgi --log-file -
