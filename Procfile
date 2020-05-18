@@ -1,1 +1,1 @@
-web: gunicorn learnHub.wsgi
+web: gunicorn LearnHub.wsgi
